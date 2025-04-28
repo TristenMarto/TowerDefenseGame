@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://ckovm4hqdeqmi"]
+
+[ext_resource type="Texture2D" uid="uid://co6erutasttur" path="res://Assets/Towers/towerDefense_tile180.png" id="1_42vsd"]
+[ext_resource type="Script" path="res://Scenes/Turrets/missile_t_1.gd" id="1_n1enu"]
+[ext_resource type="Texture2D" uid="uid://2wxr7xq0187k" path="res://Assets/Towers/towerDefense_tile228.png" id="2_58shm"]
+[ext_resource type="Texture2D" uid="uid://clc41nrlyfef6" path="res://Assets/Towers/towerDefense_tile251.png" id="3_k1qc2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_i2118"]
+
+[node name="missile_t_1" type="Node2D"]
+script = ExtResource("1_n1enu")
+
+[node name="Base" type="Sprite2D" parent="."]
+texture = ExtResource("1_42vsd")
+
+[node name="Turret" type="Sprite2D" parent="."]
+texture = ExtResource("2_58shm")
+
+[node name="Missile1" type="Sprite2D" parent="Turret"]
+texture = ExtResource("3_k1qc2")
+offset = Vector2(5, -10)
+
+[node name="Missile2" type="Sprite2D" parent="Turret"]
+texture = ExtResource("3_k1qc2")
+offset = Vector2(5, 10)
+
+[node name="Range" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Range"]
+shape = SubResource("CircleShape2D_i2118")
+
+[connection signal="body_entered" from="Range" to="." method="_on_range_body_entered"]
+[connection signal="body_exited" from="Range" to="." method="_on_range_body_exited"]

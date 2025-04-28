@@ -1,0 +1,181 @@
+[gd_scene load_steps=13 format=3 uid="uid://cvk05tvhhtnoo"]
+
+[ext_resource type="PackedScene" uid="uid://bwestojcbr2s2" path="res://Scenes/Maps/map_1.tscn" id="1_knbg1"]
+[ext_resource type="Script" path="res://Scenes/MainScenes/game_scene.gd" id="1_rxg7r"]
+[ext_resource type="Texture2D" uid="uid://ccmxpwc26nnvm" path="res://Assets/UI/Buttons/bar_square_small_square.png" id="2_hs2o2"]
+[ext_resource type="Script" path="res://Scenes/MainScenes/ui.gd" id="3_dgoyt"]
+[ext_resource type="Texture2D" uid="uid://baqh1u7fw76qx" path="res://Assets/Towers/towerDefense_tile249.png" id="3_ibc10"]
+[ext_resource type="Texture2D" uid="uid://clc41nrlyfef6" path="res://Assets/Towers/towerDefense_tile251.png" id="4_6juoo"]
+[ext_resource type="Texture2D" uid="uid://djppynqa7ylou" path="res://Assets/Icons/right.png" id="7_pvqai"]
+[ext_resource type="Texture2D" uid="uid://db85tyh8ykrom" path="res://Assets/Icons/pause.png" id="8_6n305"]
+[ext_resource type="Texture2D" uid="uid://bbqfli1rpwvxm" path="res://Assets/Icons/fastForward.png" id="9_c8kng"]
+[ext_resource type="FontFile" uid="uid://b1yefqonv5ltq" path="res://Assets/Fonts/Kenney Future Narrow.ttf" id="10_apm5b"]
+[ext_resource type="Texture2D" uid="uid://c1bmdps37obik" path="res://Assets/Icons/home.png" id="11_iaeug"]
+[ext_resource type="Texture2D" uid="uid://ckmccerchgmfw" path="res://Assets/UI/HPbar.jpg" id="12_wix65"]
+
+[node name="GameScene" type="Node2D"]
+script = ExtResource("1_rxg7r")
+
+[node name="Map1" parent="." instance=ExtResource("1_knbg1")]
+
+[node name="UI" type="CanvasLayer" parent="."]
+script = ExtResource("3_dgoyt")
+
+[node name="HUD" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="BuildBar" type="VBoxContainer" parent="UI/HUD"]
+custom_minimum_size = Vector2(100, 400)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+theme_override_constants/separation = 5
+
+[node name="gun" type="TextureButton" parent="UI/HUD/BuildBar" groups=["build_buttons"]]
+texture_filter = 2
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("2_hs2o2")
+stretch_mode = 0
+
+[node name="Icon" type="TextureRect" parent="UI/HUD/BuildBar/gun"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = -5.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_ibc10")
+expand_mode = 4
+
+[node name="missile" type="TextureButton" parent="UI/HUD/BuildBar" groups=["build_buttons"]]
+texture_filter = 2
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("2_hs2o2")
+stretch_mode = 0
+
+[node name="Icon" type="TextureRect" parent="UI/HUD/BuildBar/missile"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = -5.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_6juoo")
+expand_mode = 4
+
+[node name="GameControls" type="HBoxContainer" parent="UI/HUD"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -204.0
+offset_top = -100.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="PausePlay" type="TextureButton" parent="UI/HUD/GameControls"]
+process_mode = 3
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+toggle_mode = true
+texture_normal = ExtResource("7_pvqai")
+texture_pressed = ExtResource("8_6n305")
+
+[node name="SpeedUp" type="TextureButton" parent="UI/HUD/GameControls"]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+texture_normal = ExtResource("9_c8kng")
+
+[node name="InfoBar" type="ColorRect" parent="UI/HUD"]
+self_modulate = Color(0, 0, 0, 0.470588)
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+
+[node name="H" type="HBoxContainer" parent="UI/HUD/InfoBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Symbol" type="Label" parent="UI/HUD/InfoBar/H"]
+texture_filter = 2
+custom_minimum_size = Vector2(120, 60)
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.470588)
+theme_override_fonts/font = ExtResource("10_apm5b")
+theme_override_font_sizes/font_size = 50
+text = "$"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Money" type="Label" parent="UI/HUD/InfoBar/H"]
+texture_filter = 2
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.470588)
+theme_override_fonts/font = ExtResource("10_apm5b")
+theme_override_font_sizes/font_size = 30
+text = "4561"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Icon" type="TextureRect" parent="UI/HUD/InfoBar/H"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+texture = ExtResource("11_iaeug")
+expand_mode = 4
+
+[node name="HP" type="TextureProgressBar" parent="UI/HUD/InfoBar/H"]
+custom_minimum_size = Vector2(400, 30)
+layout_mode = 2
+size_flags_vertical = 4
+value = 100.0
+nine_patch_stretch = true
+texture_under = ExtResource("12_wix65")
+texture_progress = ExtResource("12_wix65")
+tint_under = Color(0.215686, 0.215686, 0.215686, 1)
+tint_progress = Color(0, 1, 0, 1)
+
+[node name="Control" type="Control" parent="UI/HUD/InfoBar/H"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+
+[connection signal="pressed" from="UI/HUD/GameControls/PausePlay" to="UI" method="_on_pause_play_pressed"]
+[connection signal="pressed" from="UI/HUD/GameControls/SpeedUp" to="UI" method="_on_speed_up_pressed"]
